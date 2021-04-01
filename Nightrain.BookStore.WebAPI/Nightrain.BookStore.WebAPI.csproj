@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nightrain.Base.Core\Nightrain.Base.Core.csproj" />
+    <ProjectReference Include="..\Nightrain.BookStore.Application\Nightrain.BookStore.Application.csproj" />
+    <ProjectReference Include="..\Nightrain.BookStore.Data\Nightrain.BookStore.Data.csproj" />
+    <ProjectReference Include="..\Nightrain.BookStore.IoC\Nightrain.BookStore.IoC.csproj" />
+  </ItemGroup>
+
+</Project>
