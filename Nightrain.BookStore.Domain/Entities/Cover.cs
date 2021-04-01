@@ -7,6 +7,7 @@ namespace Nightrain.BookStore.Domain.Entities
         public string Path { get; set; }
         public string FileName { get; set; }
         public short Queue { get; set; }
+
         public int BookId { get; set; }
         public virtual Book Book { get; set; }
     }

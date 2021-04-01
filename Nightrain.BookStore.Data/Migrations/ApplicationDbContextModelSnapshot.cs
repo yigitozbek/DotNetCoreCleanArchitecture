@@ -9,7 +9,7 @@ using Nightrain.BookStore.Data.Context;
 namespace Nightrain.BookStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class NightrainBookDbContextModelSnapshot : ModelSnapshot
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -22,8 +22,9 @@ namespace Nightrain.BookStore.Data.Migrations
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Author", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Biography")
                         .HasColumnType("nvarchar(MAX)");
@@ -71,13 +72,21 @@ namespace Nightrain.BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId")
+                        .IsUnique();
+
+                    b.HasIndex("BookId")
+                        .IsUnique();
+
                     b.ToTable("AuthorBooks");
                 });
 
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BookFormatId")
                         .HasColumnType("int");
@@ -122,6 +131,18 @@ namespace Nightrain.BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookFormatId")
+                        .IsUnique();
+
+                    b.HasIndex("BookSizeId")
+                        .IsUnique();
+
+                    b.HasIndex("LanguageId")
+                        .IsUnique();
+
+                    b.HasIndex("PublisherId")
+                        .IsUnique();
+
                     b.ToTable("Books");
                 });
 
@@ -140,13 +161,21 @@ namespace Nightrain.BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookId")
+                        .IsUnique();
+
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
+
                     b.ToTable("BookCategories");
                 });
 
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.BookFormat", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -160,7 +189,9 @@ namespace Nightrain.BookStore.Data.Migrations
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.BookSize", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Size")
                         .IsRequired()
@@ -174,7 +205,9 @@ namespace Nightrain.BookStore.Data.Migrations
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -197,9 +230,7 @@ namespace Nightrain.BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentId")
-                        .IsUnique()
-                        .HasFilter("[ParentId] IS NOT NULL");
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories");
                 });
@@ -207,7 +238,9 @@ namespace Nightrain.BookStore.Data.Migrations
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Cover", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BookId")
                         .HasColumnType("int");
@@ -237,13 +270,18 @@ namespace Nightrain.BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookId")
+                        .IsUnique();
+
                     b.ToTable("Covers");
                 });
 
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Language", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -257,7 +295,9 @@ namespace Nightrain.BookStore.Data.Migrations
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Publisher", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -280,94 +320,20 @@ namespace Nightrain.BookStore.Data.Migrations
                     b.ToTable("Publishers");
                 });
 
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Author", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.AuthorBook", null)
-                        .WithOne("Author")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Author", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Book", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.AuthorBook", null)
-                        .WithOne("Book")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Book", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.BookCategory", null)
-                        .WithOne("Book")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Book", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.BookFormat", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", null)
-                        .WithOne("BookFormat")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.BookFormat", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.BookSize", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", null)
-                        .WithOne("BookSize")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.BookSize", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Category", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.BookCategory", null)
-                        .WithOne("Category")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Category", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.Category", "Parent")
-                        .WithOne()
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Category", "ParentId");
-
-                    b.Navigation("Parent");
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Cover", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", "Book")
-                        .WithOne()
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Cover", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Language", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", null)
-                        .WithOne("Language")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Language", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Publisher", b =>
-                {
-                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", null)
-                        .WithOne("Publisher")
-                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Publisher", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.AuthorBook", b =>
                 {
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Author", "Author")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.AuthorBook", "AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", "Book")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.AuthorBook", "BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Author");
 
                     b.Navigation("Book");
@@ -375,6 +341,30 @@ namespace Nightrain.BookStore.Data.Migrations
 
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Book", b =>
                 {
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.BookFormat", "BookFormat")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Book", "BookFormatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.BookSize", "BookSize")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Book", "BookSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Language", "Language")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Book", "LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Publisher", "Publisher")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Book", "PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("BookFormat");
 
                     b.Navigation("BookSize");
@@ -386,9 +376,41 @@ namespace Nightrain.BookStore.Data.Migrations
 
             modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.BookCategory", b =>
                 {
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", "Book")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.BookCategory", "BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Category", "Category")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.BookCategory", "CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Book");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Category", b =>
+                {
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Category", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("Nightrain.BookStore.Domain.Entities.Cover", b =>
+                {
+                    b.HasOne("Nightrain.BookStore.Domain.Entities.Book", "Book")
+                        .WithOne()
+                        .HasForeignKey("Nightrain.BookStore.Domain.Entities.Cover", "BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
                 });
 #pragma warning restore 612, 618
         }

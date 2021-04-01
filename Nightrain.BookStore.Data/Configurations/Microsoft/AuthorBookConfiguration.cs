@@ -8,6 +8,7 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
     {
         public void Configure(EntityTypeBuilder<AuthorBook> builder)
         {
+
             builder.HasKey(i => i.Id);
 
             builder.Property(i => i.BookId)
@@ -16,7 +17,7 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
 
             builder.HasOne(i => i.Book)
                 .WithOne()
-                .HasForeignKey<Book>(i => i.Id);
+                .HasForeignKey<AuthorBook>(i => i.BookId);
 
             builder.Property(i => i.AuthorId)
                 .HasColumnType("int")
@@ -24,7 +25,8 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
 
             builder.HasOne(i => i.Author)
                 .WithOne()
-                .HasForeignKey<Author>(i => i.Id);
+                .HasForeignKey<AuthorBook>(i => i.AuthorId);
+            
         }
     }
 }

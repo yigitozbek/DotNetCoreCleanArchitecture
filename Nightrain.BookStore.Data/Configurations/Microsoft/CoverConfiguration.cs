@@ -24,7 +24,7 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
 
             builder.HasOne(i => i.Book)
                 .WithOne()
-                .HasForeignKey<Cover>(i => i.Id);
+                .HasForeignKey<Cover>(i => i.BookId);
         }
     }
-} 
+}

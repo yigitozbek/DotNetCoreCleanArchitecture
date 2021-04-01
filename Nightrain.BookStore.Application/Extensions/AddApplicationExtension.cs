@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Nightrain.Base.Core.PipelineBehaviors;
+using Nightrain.Base.Core.PipelineBehaviors.Validation.FluentValidation;
 
 namespace Nightrain.BookStore.Application.Extensions
 {

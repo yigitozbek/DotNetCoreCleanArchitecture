@@ -50,22 +50,22 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
             builder
                 .HasOne(i => i.Language)
                 .WithOne()
-                .HasForeignKey<Language>(i => i.Id);
+                .HasForeignKey<Book>(i => i.LanguageId);
 
             builder
                 .HasOne(i => i.Publisher)
                 .WithOne()
-                .HasForeignKey<Publisher>(i => i.Id);
+                .HasForeignKey<Book>(i => i.PublisherId);
 
             builder
                 .HasOne(i => i.BookSize)
                 .WithOne()
-                .HasForeignKey<BookSize>(i => i.Id);
+                .HasForeignKey<Book>(i => i.BookSizeId);
 
             builder
                 .HasOne(i => i.BookFormat)
                 .WithOne()
-                .HasForeignKey<BookFormat>(i => i.Id);
+                .HasForeignKey<Book>(i => i.BookFormatId);
 
         }
     }

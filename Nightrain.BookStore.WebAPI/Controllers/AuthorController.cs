@@ -17,11 +17,20 @@ namespace Nightrain.BookStore.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> List()
+        public IActionResult List()
         {
-            await _mediator.Send(new CreateAuthorCommand() {Name = ""}); 
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateAuthorCommand createAuthorCommand)
+        {
+            var result = await _mediator.Send(createAuthorCommand);
+            if (!result.Success) return BadRequest(result.Message);
+            return Ok(result.Message);
+        }
+
+
 
     }
 }

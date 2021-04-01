@@ -8,8 +8,7 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.Property(i => i.Id)
-                .HasColumnName("id");
+            builder.HasKey(i => i.Id);
 
             builder.Property(i => i.Name)
                 .HasColumnType("nvarchar(100)")

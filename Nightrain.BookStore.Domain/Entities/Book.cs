@@ -13,7 +13,7 @@ namespace Nightrain.BookStore.Domain.Entities
 
         public DateTime Publication { get; set; }
 
-        public short BookSizeId { get; set; }
+        public int BookSizeId { get; set; }
         public virtual BookSize BookSize { get; set; }
 
         public int BookFormatId { get; set; }
@@ -24,7 +24,5 @@ namespace Nightrain.BookStore.Domain.Entities
 
         public int PublisherId { get; set; }
         public virtual Publisher Publisher { get; set; }
-
     }
-
 }

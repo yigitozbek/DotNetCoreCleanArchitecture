@@ -11,18 +11,14 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
             builder.HasKey(i => i.Id);
 
             builder.Property(i => i.ParentId)
-                .HasColumnType("int")
-                .IsRequired(false);
+                .HasColumnType("int");
 
             builder.Property(i => i.Name)
                 .HasColumnType("nvarchar(150)")
                 .IsRequired();
 
             builder
-                .HasOne(i => i.Parent)
-                .WithOne()
-                .HasForeignKey<Category>(i => i.ParentId)
-                .IsRequired(false);
+                .HasOne(i => i.Parent);
         }
     }
 }

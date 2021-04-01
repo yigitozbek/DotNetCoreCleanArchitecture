@@ -32,15 +32,6 @@ namespace Nightrain.BookStore.Data.Context
                     case EntityState.Modified:
                         entry.Entity.LastModified = DateTime.Now;
                         break;
-                    case EntityState.Detached:
-
-                        break;
-                    case EntityState.Unchanged:
-
-                        break;
-                    case EntityState.Deleted:
-
-                        break;
                 }
             }
             return base.SaveChangesAsync(cancellationToken);

@@ -7,23 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using Nightrain.BookStore.Data.Context;
+using Nightrain.BookStore.Domain.Entities;
+using Nightrain.BookStore.Domain.Interfaces;
 
 namespace Nightrain.BookStore.Application.Handlers.MediatR.AuthorHandler
 {
     public class CreateAuthorHandler : IRequestHandler<CreateAuthorCommand, IResult>
     {
-
-        private IApplicationDbContext _applicationDbContext;
-
-        public CreateAuthorHandler(IApplicationDbContext applicationDbContext)
+        private readonly IAuthorRepository _authorRepository;
+        private readonly IMapper _mapper;
+        public CreateAuthorHandler(IAuthorRepository authorRepository, IMapper mapper)
         {
-            _applicationDbContext = applicationDbContext;
+            _authorRepository = authorRepository;
+            _mapper = mapper;
         }
 
-        public Task<IResult> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
+        public async Task<IResult> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var author = _mapper.Map<Author>(request);
+            var result = await _authorRepository.AddAsync(author);
+            if (!result.Success) return new ErrorResult(result.Message);
+            return new SuccessResult(result.Message);
         }
     }
 }

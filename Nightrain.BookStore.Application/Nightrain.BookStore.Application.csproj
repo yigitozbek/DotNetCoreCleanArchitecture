@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mapper\AutoMapper\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Nightrain.Base.Core\Nightrain.Base.Core.csproj" />
     <ProjectReference Include="..\Nightrain.BookStore.Data\Nightrain.BookStore.Data.csproj" />
     <ProjectReference Include="..\Nightrain.BookStore.Domain\Nightrain.BookStore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataTransferObjects\Author\" />
   </ItemGroup>
  
 

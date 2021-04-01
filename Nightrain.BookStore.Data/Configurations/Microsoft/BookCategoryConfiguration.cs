@@ -16,7 +16,7 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
 
             builder.HasOne(i => i.Book)
                 .WithOne()
-                .HasForeignKey<Book>(i => i.Id);
+                .HasForeignKey<BookCategory>(i => i.BookId);
 
             builder.Property(i => i.CategoryId)
                 .HasColumnType("int")
@@ -24,7 +24,7 @@ namespace Nightrain.BookStore.Data.Configurations.Microsoft
 
             builder.HasOne(i => i.Category)
                 .WithOne()
-                .HasForeignKey<Category>(i => i.Id);
+                .HasForeignKey<BookCategory>(i => i.CategoryId);
         }
     }
 }
