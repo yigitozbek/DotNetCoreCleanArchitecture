@@ -1,10 +1,10 @@
 ﻿using System;
-using MediatR;
 
-namespace Nightrain.BookStore.Domain.Commands.AuthorCommand
+namespace Nightrain.BookStore.Application.DataTransferObjects.Author
 {
-    public class CreateAuthorCommand : AuthorCommandBase
+    public class AuthorDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Biography { get; set; }

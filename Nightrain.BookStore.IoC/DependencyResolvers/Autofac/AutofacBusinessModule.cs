@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using System;
+using Nightrain.Base.Core.DataAccessLayers.Abstract;
+using Nightrain.Base.Core.DataAccessLayers.Concrete.Dapper;
 using Nightrain.BookStore.Data.Context;
 using Nightrain.BookStore.Data.Repositories.EntityFrameworkCore;
 using Nightrain.BookStore.Domain.Interfaces;
@@ -20,6 +21,7 @@ namespace Nightrain.BookStore.IoC.DependencyResolvers.Autofac
             builder.RegisterType<EfCoreLanguageRepository>().As<ILanguageRepository>();
             builder.RegisterType<EfCorePublisherRepository>().As<IPublisherRepository>();
             builder.RegisterType<EfCoreAuthorBookRepository>().As<IAuthorBookRepository>();
+            builder.RegisterType<DapperRepository>().As<IDapper>();
             builder.RegisterType<ApplicationDbContext>().As<IApplicationDbContext>().InstancePerDependency();
         }
     }

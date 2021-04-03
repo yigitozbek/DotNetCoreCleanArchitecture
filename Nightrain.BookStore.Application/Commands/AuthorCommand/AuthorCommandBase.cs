@@ -1,6 +1,6 @@
 ﻿using Nightrain.Base.Core.Commands;
 
-namespace Nightrain.BookStore.Domain.Commands.AuthorCommand
+namespace Nightrain.BookStore.Application.Commands.AuthorCommand
 {
     public class AuthorCommandBase : CommandBase
     {

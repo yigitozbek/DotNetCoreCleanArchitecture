@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Nightrain.BookStore.Domain.Commands.AuthorCommand
+namespace Nightrain.BookStore.Application.Commands.AuthorCommand
 {
-    public class DeleteAuthorCommand : AuthorCommandBase
+    public class UpdateAuthorCommand : AuthorCommandBase
     {
         public string Name { get; set; }
         public string Surname { get; set; }

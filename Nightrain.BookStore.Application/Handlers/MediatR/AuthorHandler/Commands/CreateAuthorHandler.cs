@@ -1,18 +1,13 @@
-﻿using MediatR;
-using Nightrain.Base.Core.Helpers.Results;
-using Nightrain.BookStore.Domain.Commands.AuthorCommand;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Nightrain.BookStore.Data.Context;
+using MediatR;
+using Nightrain.Base.Core.Helpers.Results;
+using Nightrain.BookStore.Application.Commands.AuthorCommand;
 using Nightrain.BookStore.Domain.Entities;
 using Nightrain.BookStore.Domain.Interfaces;
 
-namespace Nightrain.BookStore.Application.Handlers.MediatR.AuthorHandler
+namespace Nightrain.BookStore.Application.Handlers.MediatR.AuthorHandler.Commands
 {
     public class CreateAuthorHandler : IRequestHandler<CreateAuthorCommand, IResult>
     {

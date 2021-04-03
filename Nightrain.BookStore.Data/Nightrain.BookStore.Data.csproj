@@ -5,10 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Repositories\Dapper\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +18,10 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Nightrain.Base.Core\Nightrain.Base.Core.csproj" />
 	  <ProjectReference Include="..\Nightrain.BookStore.Domain\Nightrain.BookStore.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Repositories\Dapper\" />
 	</ItemGroup>
  
 

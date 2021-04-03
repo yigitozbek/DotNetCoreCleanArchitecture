@@ -1,6 +1,5 @@
 ﻿using Nightrain.Base.Core.Entities;
 using System;
-using System.Collections.Generic;
 
 namespace Nightrain.BookStore.Domain.Entities
 {

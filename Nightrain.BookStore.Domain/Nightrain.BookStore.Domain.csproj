@@ -5,11 +5,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Queries\" />
+	  <ProjectReference Include="..\Nightrain.Base.Core\Nightrain.Base.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Nightrain.Base.Core\Nightrain.Base.Core.csproj" />
+	  <Folder Include="Enums\" />
 	</ItemGroup>
  
 </Project>

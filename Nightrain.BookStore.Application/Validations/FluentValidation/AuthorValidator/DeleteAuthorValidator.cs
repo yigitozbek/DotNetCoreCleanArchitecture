@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Nightrain.BookStore.Domain.Commands.AuthorCommand;
+using Nightrain.BookStore.Application.Commands.AuthorCommand;
 
 namespace Nightrain.BookStore.Application.Validations.FluentValidation.AuthorValidator
 {
