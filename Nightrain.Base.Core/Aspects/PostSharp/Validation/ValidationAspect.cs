@@ -19,7 +19,6 @@ namespace Nightrain.Base.Core.Aspects.PostSharp.Validation
             var entityType = Validator.BaseType.GetGenericArguments()[0];
             var entity = args.Arguments.FirstOrDefault(t => t.GetType() == entityType);
             FluentValidator.Validate(Validator, entity);
-            var validator = (IValidator)Activator.CreateInstance(Validator);
         }
 
     }
