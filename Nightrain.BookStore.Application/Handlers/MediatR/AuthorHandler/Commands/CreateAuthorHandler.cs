@@ -19,6 +19,7 @@ namespace Nightrain.BookStore.Application.Handlers.MediatR.AuthorHandler.Command
             _mapper = mapper;
         }
 
+        //[ValidationAspect(Validator = typeof(CreateAuthorValidator))]
         public async Task<IResult> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
         {
             var author = _mapper.Map<Author>(request);

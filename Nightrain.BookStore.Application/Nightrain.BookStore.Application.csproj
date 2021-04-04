@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PostSharp" Version="6.9.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Nightrain.Base.Core\Nightrain.Base.Core.csproj" />
     <ProjectReference Include="..\Nightrain.BookStore.Data\Nightrain.BookStore.Data.csproj" />
     <ProjectReference Include="..\Nightrain.BookStore.Domain\Nightrain.BookStore.Domain.csproj" />

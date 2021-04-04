@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nightrain.Base.Core.Extensions;
 using Nightrain.BookStore.Application.Extensions;
 using Nightrain.BookStore.Data.Context;
 
@@ -40,6 +41,8 @@ namespace Nightrain.BookStore.WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCustomException(); 
 
             app.UseEndpoints(endpoints =>
             {
