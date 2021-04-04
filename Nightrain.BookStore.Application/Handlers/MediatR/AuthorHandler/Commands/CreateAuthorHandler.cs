@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Nightrain.Base.Core.Aspects.PostSharp.Validation;
 using Nightrain.Base.Core.Helpers.Results;
 using Nightrain.BookStore.Application.Commands.AuthorCommand;
-using Nightrain.BookStore.Application.Validations.FluentValidation.AuthorValidator;
 using Nightrain.BookStore.Domain.Entities;
 using Nightrain.BookStore.Domain.Interfaces;
 
@@ -21,6 +19,7 @@ namespace Nightrain.BookStore.Application.Handlers.MediatR.AuthorHandler.Command
             _mapper = mapper;
         }
 
+        //[ValidationAspect(Validator = typeof(CreateAuthorValidator),AspectPriority = 1)]
         public async Task<IResult> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
         {
             var author = _mapper.Map<Author>(request);

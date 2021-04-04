@@ -1,4 +1,4 @@
-﻿    using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nightrain.BookStore.Domain.Entities;
 
